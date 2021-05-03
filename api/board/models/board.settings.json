@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "boards",
+  "info": {
+    "name": "board",
+    "description": ""
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "views": {
+      "type": "integer"
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "name": {
+      "type": "string",
+      "required": false
+    },
+    "password": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "number": {
+      "type": "integer"
+    },
+    "message": {
+      "type": "text"
+    },
+    "private": {
+      "type": "boolean"
+    }
+  }
+}
