@@ -15,9 +15,6 @@ module.exports = {
         { views: parseInt(board.views) + 1 }
       );
       return board;
-      //   return ctx.send({
-      //     success: true,
-      //   });
     } catch (error) {
       console.error(error);
       return ctx.send({

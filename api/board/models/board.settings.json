@@ -23,7 +23,8 @@
       "required": false
     },
     "password": {
-      "type": "string"
+      "type": "string",
+      "private": false
     },
     "email": {
       "type": "string"
