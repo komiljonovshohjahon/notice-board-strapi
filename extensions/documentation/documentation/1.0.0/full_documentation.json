@@ -14,7 +14,7 @@
       "name": "Apache 2.0",
       "url": "https://www.apache.org/licenses/LICENSE-2.0.html"
     },
-    "x-generation-date": "05/06/2021 6:18:33 PM"
+    "x-generation-date": "05/10/2021 4:39:55 PM"
   },
   "x-strapi-config": {
     "path": "/documentation",
@@ -3328,6 +3328,9 @@
           "private": {
             "type": "boolean"
           },
+          "reply": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -3359,6 +3362,9 @@
           },
           "private": {
             "type": "boolean"
+          },
+          "reply": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

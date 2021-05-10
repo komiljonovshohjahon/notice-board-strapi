@@ -10,10 +10,12 @@ module.exports = {
     const { id } = ctx.params;
     try {
       const board = await strapi.services.board.findOne({ id });
+
       await strapi.services.board.update(
         { id: board.id },
         { views: parseInt(board.views) + 1 }
       );
+
       return board;
     } catch (error) {
       console.error(error);

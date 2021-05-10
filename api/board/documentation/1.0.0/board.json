@@ -546,6 +546,9 @@
           "private": {
             "type": "boolean"
           },
+          "reply": {
+            "type": "string"
+          },
           "published_at": {
             "type": "string",
             "format": "date-time"
@@ -577,6 +580,9 @@
           },
           "private": {
             "type": "boolean"
+          },
+          "reply": {
+            "type": "string"
           },
           "published_at": {
             "type": "string",

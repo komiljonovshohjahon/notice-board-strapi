@@ -37,6 +37,9 @@
     },
     "private": {
       "type": "boolean"
+    },
+    "reply": {
+      "type": "text"
     }
   }
 }
