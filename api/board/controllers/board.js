@@ -8,6 +8,7 @@
 module.exports = {
   async findOne(ctx) {
     const { id } = ctx.params;
+
     try {
       const board = await strapi.services.board.findOne({ id });
 
@@ -15,7 +16,6 @@ module.exports = {
         { id: board.id },
         { views: parseInt(board.views) + 1 }
       );
-
       return board;
     } catch (error) {
       console.error(error);
