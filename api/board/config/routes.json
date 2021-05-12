@@ -41,6 +41,14 @@
       }
     },
     {
+      "method": "GET",
+      "path": "/boards/:id/counter",
+      "handler": "board.findOneAndUpdate",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "DELETE",
       "path": "/boards/:id",
       "handler": "board.delete",

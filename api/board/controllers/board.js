@@ -6,12 +6,10 @@
  */
 
 module.exports = {
-  async findOne(ctx) {
+  async findOneAndUpdate(ctx) {
     const { id } = ctx.params;
-
     try {
       const board = await strapi.services.board.findOne({ id });
-
       await strapi.services.board.update(
         { id: board.id },
         { views: parseInt(board.views) + 1 }
