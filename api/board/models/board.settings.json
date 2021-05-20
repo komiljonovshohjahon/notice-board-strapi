@@ -20,10 +20,7 @@
     },
     "name": {
       "type": "string",
-      "required": false
-    },
-    "password": {
-      "type": "string",
+      "required": false,
       "private": false
     },
     "email": {
@@ -39,7 +36,11 @@
       "type": "boolean"
     },
     "reply": {
-      "type": "text"
+      "type": "text",
+      "default": "No reply YET"
+    },
+    "password": {
+      "type": "password"
     }
   }
 }

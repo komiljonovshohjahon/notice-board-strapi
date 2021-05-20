@@ -41,6 +41,14 @@
       }
     },
     {
+      "method": "DELETE",
+      "path": "/boards/:id",
+      "handler": "board.delete",
+      "config": {
+        "policies": []
+      }
+    },
+    {
       "method": "GET",
       "path": "/boards/:id/counter",
       "handler": "board.findOneAndUpdate",
@@ -49,9 +57,9 @@
       }
     },
     {
-      "method": "DELETE",
-      "path": "/boards/:id",
-      "handler": "board.delete",
+      "method": "POST",
+      "path": "/boards/:id/passChecker",
+      "handler": "board.findOneAndPassCheck",
       "config": {
         "policies": []
       }
