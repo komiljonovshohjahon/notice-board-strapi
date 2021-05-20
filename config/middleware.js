@@ -1,15 +1,15 @@
 // module.exports = {
 //   load: {
 //     before: ["csp", "xss"],
-//     order: ["csp", "xss"],
-//     after: ["parser", "router"],
+//     order: [],
+//     after: [],
 //   },
 //   settings: {
 //     csp: {
-//       enabled: false,
+//       enabled: true,
 //     },
 //     xss: {
-//       enabled: false,
+//       enabled: true,
 //     },
 //   },
 // };

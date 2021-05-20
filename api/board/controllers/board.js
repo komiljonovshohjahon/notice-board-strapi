@@ -1,4 +1,5 @@
 const { sanitizeEntity } = require("strapi-utils");
+var xss = require("xss");
 
 ("use strict");
 
@@ -8,6 +9,35 @@ const { sanitizeEntity } = require("strapi-utils");
  */
 
 module.exports = {
+  async create(ctx) {
+    let entity;
+    let sanitazed = {};
+
+    options = {
+      whiteList: {
+        a: ["href", "title", "target"],
+      },
+      stripIgnoreTag: true,
+      stripIgnoreTagBody: ["a"],
+    }; // Custom rules
+
+    let xss_sanitazed = xss(ctx.request.body.message, options);
+
+    // console.log(html);
+
+    if (ctx.is("multipart")) {
+      const { data, files } = parseMultipartData(ctx);
+      entity = await strapi.services.board.create(data, { files });
+    } else {
+      entity = await strapi.services.board.create(
+        ctx.request.body,
+        (ctx.request.body.message = xss_sanitazed)
+      );
+      console.log(entity.message);
+      // console.log(xss_sanitazed);
+    }
+  },
+
   async findOneAndUpdate(ctx) {
     const { id } = ctx.params;
     try {
@@ -16,6 +46,8 @@ module.exports = {
         { id: board.id },
         { views: parseInt(board.views) + 1 }
       );
+
+      // console.log(board.password);
 
       // return board;
       return sanitizeEntity(board, { model: strapi.models.board });
@@ -29,6 +61,7 @@ module.exports = {
 
   async findOneAndPassCheck(ctx) {
     const { id } = ctx.params;
+
     try {
       const board = await strapi.services.board.findOne({ id });
 
