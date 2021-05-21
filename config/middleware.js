@@ -6,10 +6,10 @@
 //   },
 //   settings: {
 //     csp: {
-//       enabled: true,
+//       enabled: false,
 //     },
 //     xss: {
-//       enabled: true,
+//       enabled: false,
 //     },
 //   },
 // };

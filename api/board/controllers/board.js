@@ -3,38 +3,41 @@ var xss = require("xss");
 
 ("use strict");
 
-/*
- * Read the documentation (https://strapi.io/documentation/developer-docs/latest/development/backend-customization.html#core-controllers)
- * to customize this controller
- */
+function copyer(sanitized, data) {
+  for (const prop in sanitized) {
+    data[prop] = sanitized[prop];
+  }
+}
 
 module.exports = {
   async create(ctx) {
     let entity;
-    let sanitazed = {};
 
-    options = {
-      whiteList: {
-        a: ["href", "title", "target"],
-      },
-      stripIgnoreTag: true,
-      stripIgnoreTagBody: ["a"],
-    }; // Custom rules
+    const options = {};
 
-    let xss_sanitazed = xss(ctx.request.body.message, options);
+    const sanitized = {
+      name: xss(ctx.request.body.name, options),
+      password: xss(ctx.request.body.password, options),
+      email: xss(ctx.request.body.email, options),
+      number: xss(ctx.request.body.number, options),
+      title: xss(ctx.request.body.title, options),
+      message: xss(ctx.request.body.message, options),
+    };
 
-    // console.log(html);
+    try {
+      if (ctx.is("multipart")) {
+        const { data, files } = parseMultipartData(ctx);
+        entity = await strapi.services.board.create(data, { files });
+      } else {
+        entity = await strapi.services.board.create(
+          ctx.request.body,
+          copyer(sanitized, ctx.request.body)
+        );
 
-    if (ctx.is("multipart")) {
-      const { data, files } = parseMultipartData(ctx);
-      entity = await strapi.services.board.create(data, { files });
-    } else {
-      entity = await strapi.services.board.create(
-        ctx.request.body,
-        (ctx.request.body.message = xss_sanitazed)
-      );
-      console.log(entity.message);
-      // console.log(xss_sanitazed);
+        data.created_by = entity.name;
+      }
+    } catch (error) {
+      return error;
     }
   },
 
