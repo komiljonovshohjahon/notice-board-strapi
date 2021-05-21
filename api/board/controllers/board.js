@@ -127,4 +127,11 @@ module.exports = {
       });
     }
   },
+
+  async count(ctx) {
+    if (ctx.query._q) {
+      return strapi.services.board.countSearch(ctx.query);
+    }
+    return strapi.services.board.count(ctx.query);
+  },
 };
